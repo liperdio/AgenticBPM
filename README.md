@@ -1,7 +1,7 @@
 # Agentic Process Self-Improvement with Process Mining
 
 IFN737/738 Research Project, School of Information Systems.
-Supervisor: Adam Burke (at.burke@qut.edu.au)
+
 
 ## Overview
 
