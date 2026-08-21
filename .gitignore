@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Secrets / environment
+.env
+*.key
+
+# Generated data (regenerate via case_generator.py)
+testbed/data/
+
+# Tooling / local config
+.claude/
+
+# Course materials and deliverables (not source-controlled)
+*.pdf
+*.pptx
+*.docx
+~$*
