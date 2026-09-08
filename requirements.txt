@@ -1,4 +1,6 @@
 # Phase 2 (process mining step)
 pm4py
 
-# Phase 1 (agent reasoning) — add the specific LLM SDK once a provider is chosen
+# Phase 1 (agent reasoning)
+google-genai
+python-dotenv
