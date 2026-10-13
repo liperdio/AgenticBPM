@@ -1,0 +1,153 @@
+<title>Multi-Agent Graph</title>
+<style>
+  /* layout: centered header + single mermaid diagram, utilitarian reference view */
+  :root {
+    --bg: #F5F7FB;
+    --surface: #FFFFFF;
+    --ink: #16213F;
+    --ink-soft: #545F82;
+    --ink-faint: #8890AC;
+    --line: #DEE2ED;
+    --accent: #2E7268;
+    --accent-soft: #E4F1EE;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #10131F;
+      --surface: #171B2C;
+      --ink: #E8EAF4;
+      --ink-soft: #A7AFCB;
+      --ink-faint: #6E7595;
+      --line: #262C44;
+      --accent: #5FBFAE;
+      --accent-soft: #1B2E2C;
+      color-scheme: dark;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #10131F;
+    --surface: #171B2C;
+    --ink: #E8EAF4;
+    --ink-soft: #A7AFCB;
+    --ink-faint: #6E7595;
+    --line: #262C44;
+    --accent: #5FBFAE;
+    --accent-soft: #1B2E2C;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding-block: 48px 64px;
+    padding-inline: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .eyebrow {
+    font-family: ui-monospace, "SF Mono", Consolas, monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  h1 {
+    font-family: Cambria, Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+
+  .dek {
+    color: var(--ink-soft);
+    font-size: 14.5px;
+    max-width: 62ch;
+    margin: 0;
+  }
+
+  .diagram-frame {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 20px;
+    overflow-x: auto;
+  }
+
+  .legend {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+
+  .legend-item {
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+    background: var(--accent-soft);
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+
+  .legend-item b {
+    color: var(--ink);
+    font-family: ui-monospace, "SF Mono", Consolas, monospace;
+    font-size: 12.5px;
+  }
+</style>
+
+<div class="page">
+  <div>
+    <span class="eyebrow">testbed / multi_agent_graph.py</span>
+    <h1>Procure-to-Pay Agent Graph</h1>
+  </div>
+  <p class="dek">
+    Compiled structure of the LangGraph state graph, exported directly from
+    <code>app.get_graph().draw_mermaid()</code>. Intake runs unconditionally into
+    Verification and Approval; Approval branches on its own decision, ending the
+    process on approval, or handing off to Escalation Routing when escalated.
+  </p>
+
+  <div class="diagram-frame">
+    <pre class="mermaid">
+graph TD;
+	__start__([start]):::first
+	intake(Intake Agent)
+	verification(Verification Agent)
+	approval(Approval Agent)
+	escalation_routing(Escalation Routing Agent)
+	__end__([end]):::last
+	__start__ --> intake;
+	intake --> verification;
+	verification --> approval;
+	approval -. approve .-> __end__;
+	approval -. escalate .-> escalation_routing;
+	escalation_routing --> __end__;
+	classDef first fill:#CADCFC,stroke:#1E2761,color:#1E2761
+	classDef last fill:#1E2761,stroke:#1E2761,color:#FFFFFF
+    </pre>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><b>Solid arrow</b>&nbsp;unconditional handoff</div>
+    <div class="legend-item"><b>Dashed arrow</b>&nbsp;conditional edge, labeled with the decision that triggers it</div>
+  </div>
+</div>
