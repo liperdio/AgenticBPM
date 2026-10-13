@@ -22,9 +22,12 @@ def load_cases(path: str | Path) -> list[Case]:
     return [Case(**c) for c in raw]
 
 
-def run(cases: list[Case], agent: Agent, logger: EventLogger) -> list[dict]:
+def run(cases: list[Case], agent: Agent, logger: EventLogger, verbose: bool = True) -> list[dict]:
     results = []
-    for case in cases:
+    total = len(cases)
+    for i, case in enumerate(cases, start=1):
+        if verbose and (i == 1 or i % 10 == 0 or i == total):
+            print(f"Processing case {i}/{total} ({case.case_id})...")
         logger.log_start(case, agent.name)
         decision = agent.decide(case)
         logger.log_complete(case, decision)
