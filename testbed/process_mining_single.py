@@ -18,11 +18,9 @@ import pm4py
 
 CASES_PATH = "testbed/data/cases.json"
 LOGS = {
-    "rule_based": None,
     "llama3.2": "testbed/data/event_log_ollama.jsonl",
     "qwen2.5": "testbed/data/event_log_qwen.jsonl",
     "llama3.1": "testbed/data/event_log_llama31.jsonl",
-    "gemini": "testbed/data/event_log_gemini_full.jsonl",
 }
 
 with open(CASES_PATH, encoding="utf-8") as f:
