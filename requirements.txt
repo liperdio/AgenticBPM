@@ -1,6 +1,11 @@
-# Phase 2 (process mining step)
+# Process mining
 pm4py
+pandas
+ebi-pm
 
-# Phase 1 (agent reasoning)
+# Agent reasoning (local models)
+ollama
+
+# Gemini agent (optional, kept for reference)
 google-genai
 python-dotenv
