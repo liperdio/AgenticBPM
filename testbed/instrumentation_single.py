@@ -1,4 +1,4 @@
-"""The four instrumentation items requested by the supervisor on the single-agent logs (llama3.2, qwen2.5, llama3.1).
+"""Four instrumentation items on the single-agent logs (llama3.2, qwen2.5, llama3.1).
 
 1. Token cost per activity
 2. Time per activity
