@@ -53,9 +53,8 @@ Baseline results, with no feedback applied (single agent, 200 cases, 119 approve
 
 ## Decisions and lessons worth knowing
 
-1. **No workflow engine.** An early four-agent pipeline built with LangGraph was dropped on the
-   supervisor's advice: a fixed graph can only replay the design. The current agents choose their
-   own activities, and the process is mined from the event log afterwards.
+1. **No workflow engine.** No fixed workflow or graph is prescribed. The agents choose their own
+   activities, and the process is mined from the event log afterwards.
 2. **Local models, not cloud free tiers.** Free cloud quotas limit how many cases can be run, so
    all reported experiments use local models through Ollama. The Gemini agent (`llm_agent.py`)
    is kept for reference but is not part of the analyses.
@@ -139,7 +138,7 @@ testbed/
   process_mining_single.py   # PM4Py pass over single-agent logs
   instrumentation_single.py  # tokens, time, conformance, stochastic conformance
   ebi_single.py              # Ebi stochastic conformance matrices
-  process_mining_multi.py    # legacy: analysis of the dropped fixed-graph pipeline's log
+  process_mining_multi.py    # legacy: analysis of an earlier fixed four-stage pipeline's log
   data/                      # generated output (not committed)
 ```
 
@@ -151,16 +150,8 @@ testbed/
    frame, rerun and compare with the no-feedback baseline (RQ1).
 4. Build the condition switch with the autonomous and centaur branches and compare them (RQ2).
 5. Add BPIC logs as a secondary dataset.
-6. Agree with the supervisor whether RQ1 should say "multi-agent" while the complete results are
-   single-agent.
 
 ## Related documents
 
 The following are provided separately from this repository: the Assignment 2C research progress
-report (full literature review, methodology and results tables), and the consultation slides
-used in meetings with the supervisor.
-
-## Secrets
-
-Copy `.env.example` to `.env` and add your own key only if you use the Gemini agent. `.env` is
-ignored by git. Never commit API keys.
+report (full literature review, methodology and results tables), and the consultation slides.
